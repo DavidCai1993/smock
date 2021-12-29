@@ -6,15 +6,13 @@ import { ethers } from 'hardhat';
 chai.should();
 chai.use(smock.matchers);
 
-describe('Initialization:: FakeAtAddress', () => {
+describe.only('Initialization:: FakeAtAddress', () => {
   let fake: FakeContract<Returner>;
   let fakeAtAddress: FakeContract<PickyReturner>;
 
   beforeEach(async () => {
     fake = await smock.fake<Returner>('Returner');
-    fakeAtAddress = await smock.fake<PickyReturner>('PickyReturner', {
-      address: '0x6b175474e89094c44da98b954eedeac495271d0f',
-    });
+    fakeAtAddress = await smock.fake<PickyReturner>('PickyReturner');
   });
 
   it('should be able to revert without reason', async () => {
